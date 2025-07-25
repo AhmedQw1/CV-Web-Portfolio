@@ -1,0 +1,28 @@
+/* Custom animations not covered by Tailwind */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* Utility for section transitions */
+.reveal {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Additional styling beyond Tailwind */
+.reveal {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Fix for Safari's overflow issues with border radius */
+.overflow-hidden {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
