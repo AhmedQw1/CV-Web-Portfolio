@@ -77,7 +77,7 @@ const Projects = () => {
                   
                   <div className="flex space-x-3">
                     <a 
-                      href="https://github.com/AhmedQw1/My-Portfolio" 
+                      href="https://github.com/AhmedQw1/CV-Web-Portfolio.git" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="bg-gradient-blue text-white px-3 py-1 rounded-md border-2 border-blue-700 font-bold shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow text-sm"
@@ -138,7 +138,7 @@ const Projects = () => {
                   
                   <div className="flex space-x-3">
                     <a 
-                      href="https://github.com/AhmedQw1/JavaFX-SoundPlayer" 
+                      href="https://github.com/AhmedQw1/SoundPlayer.git" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="bg-gradient-blue text-white px-3 py-1 rounded-md border-2 border-blue-700 font-bold shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow text-sm"
