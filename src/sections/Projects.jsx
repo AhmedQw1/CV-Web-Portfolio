@@ -88,7 +88,7 @@ const Projects = () => {
                       </span>
                     </a>
                     <a 
-                      href="https://AhmedQw1-portfolio-xi.vercel.app/" 
+                      href="https://cv-web-portfolio.vercel.app/" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="bg-gradient-button text-black px-3 py-1 rounded-md border-2 border-gray-300 font-bold shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow text-sm"

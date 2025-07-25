@@ -66,7 +66,7 @@ const Hero = () => {
               </a>
               <a 
                 href="#contact" 
-                className="bg-gradient-button text-black dark:text-white px-6 py-3 rounded-md border-2 border-gray-300 dark:border-gray-700 font-bold shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-comic dark:bg-gray-800"
+                className="bg-gradient-button text-black dark:text-black px-6 py-3 rounded-md border-2 border-gray-300 dark:border-gray-500 font-bold shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-comic dark:bg-gray-800"
               >
                 <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-transparent h-1/2"></div>
                 <span className="relative z-10 flex items-center">
