@@ -123,8 +123,11 @@ html, body {
 }
 
 /* Cursor effects (very 2010s) */
-.cursor-pointer {
-  cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAABHUlEQVR4nM2UsUoDQRCGPwNBQYmVkDZd2ihWNlb2PoGFhdUVvkAKCVb2FpbxBSzsrGwt7cQ2RbQxGhTxP5mFZZndvb0I+sPAzt3Mt3OzM3DD/2EK2AY+gS5wAcwb8UvAJ/ACrEUGWwG6wBvQUbEOPGv8tAY4AJEf4GFEkb7gu9IUKGALeMfmzEhzBnxo2+OQ4BnQA1rAYkSwoX1bwJzON4GbotA6cAosALPAcYlL2lkL2AZmgGPVHgAdA8Ap8J0I1jc11tE3sYZHEUHXJu4bqhE8qRD0uCrQCZ6XCF4ZcoI7FYLXFnFXrukHcKgvxYh9aaC5dwH0Ja1iHBN7RjnZTkZlBzgH7hWnWn8YElzTSXADjI/Kn4Ar/gQX1ZGwk4YAAAAASUVORK5CYII='), auto;
+html, body {
+  cursor: url('/cursors/arrow-cursor.png'), auto;
+}
+a, button, [role="button"], .cursor-pointer {
+  cursor: url('/cursors/link-cursor.png'), pointer;
 }
 @layer base {
   html {
