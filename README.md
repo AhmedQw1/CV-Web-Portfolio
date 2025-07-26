@@ -1,7 +1,7 @@
 # CV Web Portfolio
 
 A modern, retro-inspired developer portfolio built with **React**, **Vite**, and **Tailwind CSS**.  
-Showcasing projects, skills, and contact info—designed for both desktop and mobile with playful, pixel-art flair.
+Showcasing projects, skills, and contact info designed for both desktop and mobile with playful, pixel-art flair.
 
 ![Website Screenshot](src/assets/Website-Showcase.png)
 
@@ -95,4 +95,4 @@ Showcasing projects, skills, and contact info—designed for both desktop and mo
 
 ---
 
-> Made with ❤️ by Ahmed Qw1
+> Made with ❤️ by AhmedQw1
