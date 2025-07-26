@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import whatever from '../assets/whatever.png';      
-import soundPlayer from '../assets/SoundPlayer.png'; 
-import luffyGif from '../assets/luffyBeingDumb.gif'; 
+import whatever from '../assets/images/whatever.png';
+import soundPlayer from '../assets/images/SoundPlayer.png';
+import luffyGif from '../assets/images/luffyBeingDumb.gif';
 
 const Projects = () => {
   const sectionRef = useRef(null);

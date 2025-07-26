@@ -5,6 +5,24 @@
 /* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Comic+Neue:wght@400;700&display=swap');
 
+/* Local Google Regular and Italic Fonts */
+@font-face {
+  font-family: 'CustomGoogleFont';
+  src: url('./assets/fonts/regular-google-font.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'CustomGoogleFont';
+  src: url('./assets/fonts/italic-google-font.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+
 /* Custom animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
@@ -74,6 +92,21 @@ html, body {
   max-width: 100%;
   scroll-behavior: smooth;
   background-color: #f0f0f0;
+}
+
+@layer base {
+  html {
+    transition: background-color 0.5s ease, color 0.5s ease;
+    background-color: #f0f0f0;
+    color: #222;
+  }
+  html.dark {
+    @apply bg-gray-900 text-white;
+  }
+  body {
+    transition: background-color 0.5s ease, color 0.5s ease;
+    background-color: transparent;
+  }
 }
 
 /* Enhanced focus styles for accessibility */

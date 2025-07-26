@@ -19,8 +19,9 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Verdana', 'Arial', 'sans-serif'],
-        comic: ['"Comic Neue"', '"Comic Sans MS"', 'cursive'],
-        pixel: ['"Press Start 2P"', 'cursive'],
+        customgoogle: ['CustomGoogleFont', 'sans-serif'],
+        comic: ['"Comic Neue"', '"Comic Sans MS"'],
+        pixel: ['"Press Start 2P"'],
         retro: ['"VT323"', 'monospace'],
       },
       colors: {
