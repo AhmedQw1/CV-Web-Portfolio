@@ -3,7 +3,7 @@
 A modern, retro-inspired developer portfolio built with **React**, **Vite**, and **Tailwind CSS**.  
 Showcasing projects, skills, and contact info designed for both desktop and mobile with playful, pixel-art flair.
 
-![Website Screenshot](src/assets/Website-Showcase.png)
+![Website Screenshot](src/assets/images/Website-Showcase.png)
 
 [**Live Demo →**](https://cv-web-portfolio.vercel.app/) 
 
@@ -75,7 +75,7 @@ Showcasing projects, skills, and contact info designed for both desktop and mobi
 
 ## 🖼️ Screenshots
 
-![Website Screenshot](src/assets/Website-Showcase.png)
+![Website Screenshot](src/assets/images/Website-Showcase.png)
 
 ---
 
