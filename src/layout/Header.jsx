@@ -177,7 +177,7 @@ const Header = () => {
             <a
               key={item.name}
               href={item.href}
-              className="block px-4 py-2 text-retro-navy hover:bg-gray-100 font-normal"
+              className="block px-4 py-2 text-retro-navy hover:bg-gray-100 font-sans"
               onClick={() => setIsOpen(false)}
             >
               <span className="mr-2">{item.icon}</span>
