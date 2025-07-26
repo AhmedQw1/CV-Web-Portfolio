@@ -19,7 +19,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Verdana', 'Arial', 'sans-serif'],
-        comic: ['"Comic Sans MS"', 'cursive'],
+        comic: ['"Comic Neue"', '"Comic Sans MS"', 'cursive'],
         pixel: ['"Press Start 2P"', 'cursive'],
         retro: ['"VT323"', 'monospace'],
       },
