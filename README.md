@@ -1,12 +1,98 @@
-# React + Vite
+# CV Web Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, retro-inspired developer portfolio built with **React**, **Vite**, and **Tailwind CSS**.  
+Showcasing projects, skills, and contact info—designed for both desktop and mobile with playful, pixel-art flair.
 
-Currently, two official plugins are available:
+![Website Screenshot](src/assets/Website-Showcase.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[**Live Demo →**](https://cv-web-portfolio.vercel.app/) 
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Key Features
+
+- 🌈 Modern Web 2.0-inspired UI with custom gradients, shadows, and retro touches
+- 🌙 Light/Dark mode toggle with smooth transitions
+- 🖱️ Custom pixel-art cursor for interactive elements
+- 👋 Animated hero section (typing effect, dev badge)
+- 🛠️ Categorized skill badges and retro labels
+- 📂 Projects section with badges, downloads, and live/demo links
+- 📧 Contact form (Formspree integration, validation, anti-self-email)
+- 🕒 Real-time clock and visitor counter
+- 📱 Fully responsive: mobile & desktop layouts
+- 🎨 Custom Google Fonts: Comic Sans, VT323, Press Start 2P
+- 🏁 Smooth section reveal animations (Intersection Observer)
+- 🖥️ Custom scrollbars and accessibility-focused styles
+
+---
+
+## 🛠️ Tech Stack
+
+- **React** (functional components & hooks)
+- **Vite** (dev/build tooling)
+- **Tailwind CSS** (utility-first styling)
+- **Custom CSS** (global styles, scrollbars, animations)
+- **Formspree** (contact form backend)
+- **JavaScript (ES6+)**
+- **Intersection Observer API** (scroll animations)
+- **Google Fonts** (retro/pixel fonts)
+- **SVG Icons** & **Custom PNG Cursors**
+- **Accessibility Enhancements**
+
+---
+
+## ⚡ Quick Start
+
+1. **Clone & Install**
+    ```bash
+    git clone https://github.com/AhmedQw1/CV-Web-Portfolio.git
+    cd CV-Web-Portfolio
+    npm install
+    # or
+    yarn install
+    ```
+2. **Run Locally**
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
+3. **Build for Production**
+    ```bash
+    npm run build
+    # or
+    yarn build
+    ```
+
+---
+
+## 📦 Deploy
+
+- **Vercel** (recommended): Import the repo, use framework: Vite, output: `dist`
+- **Netlify**/**GitHub Pages**: Supported—see respective docs
+
+---
+
+## 🖼️ Screenshots
+
+![Website Screenshot](src/assets/Website-Showcase.png)
+
+---
+
+## ✏️ Customization
+
+- **Update content** in `src/data/` & components in `src/pages/`
+- **Swap images/fonts** in `src/assets/` & `index.css`
+- **Edit colors/fonts** in `tailwind.config.js` as needed
+
+---
+
+## 📬 Contact
+
+- [LinkedIn](https://www.linkedin.com/in/ahmed-salmen-26119a370/)
+- [GitHub](https://github.com/AhmedQw1)
+- Email: Ahmedsalmen00@gmail.com
+
+---
+
+> Made with ❤️ by Ahmed Qw1
