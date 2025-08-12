@@ -1,6 +1,6 @@
 /**
  * ESLint configuration
- * Current Date and Time (UTC): 2025-07-24 12:40:02
+ * Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): 2025-08-12 10:49:41
  * Current User's Login: AhmedQw1
  */
 import js from '@eslint/js'
@@ -20,7 +20,6 @@ export default defineConfig([
     ],
     languageOptions: {
       ecmaVersion: 2020,
-      // Combine browser and node globals
       globals: {
         ...globals.browser,
         ...globals.node
@@ -35,7 +34,6 @@ export default defineConfig([
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
   },
-  // Add specific overrides for config files
   {
     files: ['*.config.js', 'tailwind.config.js', 'postcss.config.js', 'vite.config.js'],
     languageOptions: {

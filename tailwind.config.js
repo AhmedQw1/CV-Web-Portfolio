@@ -1,14 +1,13 @@
 /* eslint-env node */
 /**
  * @type {import('tailwindcss').Config}
- * Current Date and Time (UTC): 2025-07-25 05:14:45
+ * Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): 2025-08-12 10:49:41
  * Current User's Login: AhmedQw1
  */
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   darkMode: 'class',
   theme: {
-    
     extend: {
       transitionProperty: {
         'colors': 'color, background-color, border-color, text-decoration-color, fill, stroke',
