@@ -37,6 +37,13 @@ const Skills = () => {
     "Scene Builder"
   ];
   
+  const aiSkills = [
+    "Prompt Engineering",
+    "Chatbot Development",
+    "AI APIs",
+    "Natural Language Processing (NLP)"
+  ];
+  
   const toolsSkills = [
     "VS Code",
     "IntelliJ IDEA",
@@ -46,7 +53,7 @@ const Skills = () => {
   
   // Simple skill item component
   const SkillItem = ({ name }) => (
-    <div className="mb-2 border-2 border-gray-200 bg-white rounded-lg p-3 shadow-web2 relative overflow-hidden transition-transform hover:scale-105">
+    <div className="mb-2 border-2 border-gray-200 bg-white rounded-lg p-3 shadow-web2 relative overflow-hidden transition-transform hover:scale-105 duration-300">
       <div className="absolute inset-0 bg-gradient-to-b from-white/50 to-transparent h-1/2"></div>
       <div className="flex items-center relative z-10">
         <span className="font-comic font-bold text-retro-navy">{name}</span>
@@ -73,10 +80,10 @@ const Skills = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Web Development */}
           <div className="reveal opacity-0">
-            <div className="border-4 border-gray-300 bg-white rounded-lg p-6 shadow-web2 relative overflow-hidden">
+            <div className="border-4 border-gray-300 bg-white rounded-lg p-6 shadow-web2 relative overflow-hidden h-full">
               <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
               
               <div className="relative z-10">
@@ -84,9 +91,8 @@ const Skills = () => {
                   <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
                   <h3 className="font-comic font-bold text-center text-lg relative z-10">Web Development</h3>
                   
-                  {/* Small Pro Level label */}
                   <div className="absolute right-0 top-0 bg-web2-green text-white px-1 py-0.5 shadow-md text-[7px] font-bold">
-                    Pro Level
+                    Specialist
                   </div>
                 </div>
                 
@@ -96,7 +102,6 @@ const Skills = () => {
                   ))}
                 </div>
                 
-                {/* Web 2.0 badge displaying experience */}
                 <div className="mt-4 bg-gradient-to-r from-web2-purple to-web2-blue p-3 rounded-lg text-white text-center relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
                   <div className="relative z-10 font-comic">
@@ -105,14 +110,13 @@ const Skills = () => {
                 </div>
               </div>
               
-              {/* Corner embellishment */}
               <div className="absolute top-0 right-0 w-0 h-0 border-t-[25px] border-r-[25px] border-t-web2-blue border-r-transparent transform scale-x-[-1]"></div>
             </div>
           </div>
           
           {/* Desktop Development */}
           <div className="reveal opacity-0">
-            <div className="border-4 border-gray-300 bg-white rounded-lg p-6 shadow-web2 relative overflow-hidden">
+            <div className="border-4 border-gray-300 bg-white rounded-lg p-6 shadow-web2 relative overflow-hidden h-full">
               <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
               
               <div className="relative z-10">
@@ -120,9 +124,8 @@ const Skills = () => {
                   <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
                   <h3 className="font-comic font-bold text-center text-lg relative z-10">Desktop Development</h3>
                   
-                  {/* Small Pro Level label */}
                   <div className="absolute right-0 top-0 bg-web2-green text-white px-1 py-0.5 shadow-md text-[7px] font-bold">
-                    Pro Level
+                    Skilled
                   </div>
                 </div>
                 
@@ -132,7 +135,6 @@ const Skills = () => {
                   ))}
                 </div>
                 
-                {/* Web 2.0 badge displaying experience */}
                 <div className="mt-4 bg-gradient-to-r from-web2-green to-web2-blue p-3 rounded-lg text-white text-center relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
                   <div className="relative z-10 font-comic">
@@ -141,14 +143,46 @@ const Skills = () => {
                 </div>
               </div>
               
-              {/* Corner embellishment */}
+              <div className="absolute top-0 right-0 w-0 h-0 border-t-[25px] border-r-[25px] border-t-web2-blue border-r-transparent transform scale-x-[-1]"></div>
+            </div>
+          </div>
+
+          {/* AI & Automation - New Category */}
+          <div className="reveal opacity-0">
+            <div className="border-4 border-gray-300 bg-white rounded-lg p-6 shadow-web2 relative overflow-hidden h-full">
+              <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
+              
+              <div className="relative z-10">
+                <div className="bg-gradient-blue text-white py-3 px-4 rounded-md shadow-web2 mb-6 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
+                  <h3 className="font-comic font-bold text-center text-lg relative z-10">AI & Automation</h3>
+                  
+                  <div className="absolute right-0 top-0 bg-web2-red text-white px-1 py-0.5 shadow-md text-[7px] font-bold">
+                    NEW!
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  {aiSkills.map((skill, index) => (
+                    <SkillItem key={index} name={skill} />
+                  ))}
+                </div>
+                
+                <div className="mt-4 bg-gradient-to-r from-web2-pink to-web2-purple p-3 rounded-lg text-white text-center relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
+                  <div className="relative z-10 font-comic">
+                    <span className="block text-sm">Leveraging AI Technologies</span>
+                  </div>
+                </div>
+              </div>
+              
               <div className="absolute top-0 right-0 w-0 h-0 border-t-[25px] border-r-[25px] border-t-web2-blue border-r-transparent transform scale-x-[-1]"></div>
             </div>
           </div>
           
           {/* Tools & Technologies */}
           <div className="reveal opacity-0">
-            <div className="border-4 border-gray-300 bg-white rounded-lg p-6 shadow-web2 relative overflow-hidden">
+            <div className="border-4 border-gray-300 bg-white rounded-lg p-6 shadow-web2 relative overflow-hidden h-full">
               <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
               
               <div className="relative z-10">
@@ -156,9 +190,8 @@ const Skills = () => {
                   <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
                   <h3 className="font-comic font-bold text-center text-lg relative z-10">Tools & Technologies</h3>
                   
-                  {/* Small Pro Level label */}
                   <div className="absolute right-0 top-0 bg-web2-green text-white px-1 py-0.5 shadow-md text-[7px] font-bold">
-                    Pro Level
+                    Experienced
                   </div>
                 </div>
                 
@@ -168,7 +201,6 @@ const Skills = () => {
                   ))}
                 </div>
                 
-                {/* Web 2.0 badge displaying experience */}
                 <div className="mt-4 bg-gradient-to-r from-web2-orange to-web2-red p-3 rounded-lg text-white text-center relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
                   <div className="relative z-10 font-comic">
@@ -177,7 +209,6 @@ const Skills = () => {
                 </div>
               </div>
               
-              {/* Corner embellishment */}
               <div className="absolute top-0 right-0 w-0 h-0 border-t-[25px] border-r-[25px] border-t-web2-blue border-r-transparent transform scale-x-[-1]"></div>
             </div>
           </div>
@@ -187,4 +218,4 @@ const Skills = () => {
   );
 };
 
-export default Skills;  
+export default Skills;

@@ -81,8 +81,8 @@ const Projects = () => {
               <h2 className="relative z-10 text-shadow">
                 My <span className="text-web2-yellow font-bold">Projects</span>
               </h2>
-              <div className="absolute -right-0 top-0 bottom-1/2 bg-web2-red text-white px-[1px] py-[0px] shadow-md text-[9px] font-bold rounded-[5px]">
-                NEW!
+              <div className="absolute -right-0 top-0 bottom-7   bg-web2-red text-white px-[0px] py-[0px] shadow-md text-[9px] font-bold rounded-[9px]">
+                Showcase!
               </div>
             </div>
           </div>
