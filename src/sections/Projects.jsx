@@ -37,7 +37,7 @@ const Projects = () => {
         { name: "JavaScript", color: "black" }
       ],
       description: "A personal portfolio website built with React and Tailwind CSS featuring Web 2.0 design elements, responsive layout, and interactive components.",
-      githubUrl: "https://github.com/AhmedFric11/CV-Web-Portfolio.git",
+      githubUrl: "https://github.com/AhmedQw1/CV-Web-Portfolio.git",
       liveUrl: "https://cv-web-portfolio.vercel.app/",
       labelColor: "black"
     },
@@ -65,7 +65,7 @@ const Projects = () => {
         { name: "Firebase", color: "blue-100 text-blue-800" }
       ],
       description: "A university-focused group chat platform built with React, Firebase, and Tailwind CSS. Features real-time messaging, file sharing, and organized chat rooms by major, course, and general topics.",
-      githubUrl: "https://github.com/AhmedFric11/uni-chat-app.git",
+      githubUrl: "https://github.com/AhmedQw1/uni-chat-app.git",
       liveUrl: "https://uni-chat-app-vuuh.vercel.app/",
       labelColor: "web2-blue"
     }
