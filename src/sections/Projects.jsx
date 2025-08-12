@@ -51,8 +51,8 @@ const Projects = () => {
         { name: "FXML", color: "green-100 text-green-800" }
       ],
       description: "A desktop sound player application built with JavaFX that allows users to play, pause, and skip audio tracks with a clean and intuitive interface.",
-      githubUrl: "https://github.com/AhmedFric11/SoundPlayer.git",
-      downloadUrl: "https://github.com/AhmedFric11/SoundPlayer/releases/download/v1.0.0/SoundPlayerV1-1.0.exe",
+      githubUrl: "https://github.com/AhmedQw1/SoundPlayer.git",
+  downloadUrl: "https://github.com/AhmedQw1/SoundPlayer/releases/download/v1.0.0/SoundPlayerV1-1.0.exe",
       labelColor: "web2-green"
     },
     {
