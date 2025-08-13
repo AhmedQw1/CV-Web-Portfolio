@@ -1,3 +1,9 @@
+/**
+ * Projects component
+ * Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): 2025-08-13 10:01:37
+ * Current User's Login: AhmedQw1
+ */
+
 import { IoChatbubbleOutline } from "react-icons/io5";
 import React, { useEffect, useRef } from 'react';
 
@@ -52,19 +58,20 @@ const Projects = () => {
       ],
       description: "A desktop sound player application built with JavaFX that allows users to play, pause, and skip audio tracks with a clean and intuitive interface.",
       githubUrl: "https://github.com/AhmedQw1/SoundPlayer.git",
-  downloadUrl: "https://github.com/AhmedQw1/SoundPlayer/releases/download/v1.0.0/SoundPlayerV1-1.0.exe",
+      downloadUrl: "https://github.com/AhmedQw1/SoundPlayer/releases/download/v1.0.0/SoundPlayerV1-1.0.exe",
       labelColor: "web2-green"
     },
     {
       title: "Uni Chat",
       image: null,
-      label: "UPCOMING",
+      label: "LIVE",
       tags: [
         { name: "React", color: "blue-100 text-blue-800" },
         { name: "Tailwind CSS", color: "blue-100 text-blue-800" },
         { name: "Firebase", color: "blue-100 text-blue-800" }
       ],
-      description: "A university-focused group chat platform built with React, Firebase, and Tailwind CSS. Features real-time messaging, file sharing, and organized chat rooms by major, course, and general topics.",
+      descriptionPrimary: "A university-focused group chat platform built with React, Firebase, and Tailwind CSS.",
+      descriptionSecondary: "Features real-time messaging, file sharing, and organized chat rooms by major, course, and general topics.",
       githubUrl: "https://github.com/AhmedQw1/uni-chat-app.git",
       liveUrl: "https://uni-chat-app-vuuh.vercel.app/",
       labelColor: "web2-blue"
@@ -81,7 +88,7 @@ const Projects = () => {
               <h2 className="relative z-10 text-shadow">
                 My <span className="text-web2-yellow font-bold">Projects</span>
               </h2>
-              <div className="absolute -right-0 top-0 bottom-7   bg-web2-red text-white px-[0px] py-[0px] shadow-md text-[9px] font-bold rounded-[9px]">
+              <div className="absolute -right-0 top-0 bottom-7 bg-web2-red text-white px-[0px] py-[0px] shadow-md text-[9px] font-bold rounded-[9px]">
                 Showcase!
               </div>
             </div>
@@ -125,9 +132,20 @@ const Projects = () => {
                       ))}
                     </div>
                     
-                    <p className="text-gray-700 mb-4 font-comic text-sm line-clamp-3">
-                      {project.description}
-                    </p>
+                    {project.descriptionPrimary ? (
+                      <>
+                        <p className="text-gray-700 mb-2 font-comic text-sm">
+                          {project.descriptionPrimary}
+                        </p>
+                        <p className="text-gray-700 mb-4 font-comic text-sm text-opacity-80">
+                          {project.descriptionSecondary}
+                        </p>
+                      </>
+                    ) : (
+                      <p className="text-gray-700 mb-4 font-comic text-sm">
+                        {project.description}
+                      </p>
+                    )}
                     
                     <div className="flex space-x-3">
                       <a 
