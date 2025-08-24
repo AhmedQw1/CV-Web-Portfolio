@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import profileImage from '../assets/images/Profile.png';
 
 const Hero = () => {
   const sectionRef = useRef(null);
+  const [visitorCount, setVisitorCount] = useState('...');
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -16,6 +17,31 @@ const Hero = () => {
 
     const elements = sectionRef.current.querySelectorAll('.reveal');
     elements.forEach(el => observer.observe(el));
+
+    const updateVisitorCount = async () => {
+      const hasVisited = localStorage.getItem('hasVisitedPortfolio');
+      let endpoint = '/api/counter';
+
+      if (hasVisited) {
+        endpoint = '/api/counter?action=get';
+      } else {
+        localStorage.setItem('hasVisitedPortfolio', 'true');
+        endpoint = '/api/counter?action=increment';
+      }
+
+      try {
+        const response = await fetch(endpoint);
+        const data = await response.json();
+        if (data.count !== undefined) {
+          setVisitorCount(data.count.toLocaleString());
+        }
+      } catch (error) {
+        console.error("Failed to update visitor count:", error);
+        setVisitorCount('N/A'); 
+      }
+    };
+
+    updateVisitorCount();
 
     return () => {
       elements.forEach(el => observer.unobserve(el));
@@ -31,18 +57,15 @@ const Hero = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 reveal opacity-0">
-            {/* Web 2.0 Welcome Banner */}
             <div className="bg-web2-blue text-white py-4 px-6 rounded-lg shadow-web2 mb-6 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-comic font-bold text-shadow relative z-10">
                 Hi, I'm <span className="text-web2-yellow">Ahmed Salmen</span>
               </h1>
-              {/* Small HELLO! label */}
               <div className="absolute right-0 top-0 bg-web2-red text-white px-[4px] py-[1px] shadow-md text-[9px] font-bold rounded-[5px]">
                 HELLO!
               </div>
             </div>
-            {/* Animated subtitle with Web 2.0 style */}
             <div className="bg-black p-2 mb-8 border-2 border-web2-green overflow-hidden font-retro">
               <div className="animate-blink text-web2-green">
                 &gt; <span className="typing-effect">Software Engineer</span>_
@@ -77,13 +100,12 @@ const Hero = () => {
                 </span>
               </a>
             </div>
-            {/* Web 2.0 Counter */}
+            {/* DYNAMIC VISITOR COUNTER */}
             <div className="mt-8 inline-block bg-black text-green-400 font-mono px-4 py-2 rounded-md border-2 border-green-500">
-              <div className="text-sm">Online for: 365 days</div>
+              <div className="text-sm">Visitors: {visitorCount}</div>
             </div>
           </div>
           <div className="md:w-1/2 mt-12 md:mt-0 reveal opacity-0 flex justify-center">
-            {/* Web 2.0 style image frame */}
             <div className="relative">
               <div className="border-8 border-white bg-white shadow-lg rounded-md p-2 transform rotate-3">
                 <img 
@@ -91,16 +113,12 @@ const Hero = () => {
                   alt="Ahmed Salmen" 
                   className="w-64 h-64 object-cover border-2 border-gray-300"
                 />
-                {/* Web 2.0 photo corner */}
                 <div className="absolute -top-2 -right-2 w-8 h-8 bg-web2-yellow transform rotate-45"></div>
-                {/* Photo tape */}
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-16 h-6 bg-gradient-to-b from-gray-200 to-gray-300 opacity-80"></div>
               </div>
-              {/* Web 2.0 style polaroid caption */}
               <div className="absolute -bottom-6 -right-4 font-comic text-sm border-2 border-gray-200 p-3 shadow-md transform -rotate-2 rounded-md bg-white dark:bg-gray-800 text-retro-navy dark:text-white transition-colors duration-300">
                 Developer at work! 🚀
               </div>
-              {/* Web 2.0 Starburst */}
               <div className="absolute -top-12 -right-12">
                 <div className="relative w-24 h-24">
                   <div className="absolute inset-0 bg-web2-red rounded-full animate-spin-slow"></div>
