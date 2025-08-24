@@ -1,89 +1,85 @@
 # CV Web Portfolio
 
-A modern, retro-inspired developer portfolio built with **React**, **Vite**, and **Tailwind CSS**.  
-Showcasing projects, skills, and contact info designed for both desktop and mobile with playful, pixel-art flair.
+A web-based portfolio built with modern technologies, featuring a dynamic visitor counter and a secure contact form.
+
+---
 
 ![Website Screenshot](src/assets/images/Website-Showcase.png)
 
-[**Live Demo →**](https://cv-web-portfolio.vercel.app/) 
+---
+
+## 🚀 Live Demo
+
+[👉 View the site here](https://cv-web-portfolio.vercel.app/)
 
 ---
 
-## 🚀 Key Features
+## 🚀 Features
 
-- 🌈 Modern Web 2.0-inspired UI with custom gradients, shadows, and retro touches
-- 🌙 Light/Dark mode toggle with smooth transitions
-- 🖱️ Custom pixel-art cursor for interactive elements
-- 👋 Animated hero section (typing effect, dev badge)
-- 🛠️ Categorized skill badges and retro labels
-- 📂 Projects section with badges, downloads, and live/demo links
-- 📧 Contact form (Formspree integration, validation, anti-self-email)
-- 🕒 Real-time clock and visitor counter
-- 📱 Fully responsive: mobile & desktop layouts
-- 🎨 Custom Google Fonts: Comic Sans, VT323, Press Start 2P
-- 🏁 Smooth section reveal animations (Intersection Observer)
-- 🖥️ Custom scrollbars and accessibility-focused styles
+- **Functional Visitor Counter Backend**
+  - Dynamic visitor counter powered by Supabase PostgreSQL.
+  - Vercel Serverless Function at `/api/counter` handles backend logic and database communication.
+  - Unique visitor detection using browser localStorage: only first-time visitors increment the count.
 
----
+- **Live Visitor Count on Frontend**
+  - Hero section displays the current visitor count live from the backend API.
 
-## 🛠️ Tech Stack
+- **Secure Configuration**
+  - All secrets (Supabase keys, Formspree endpoint) are stored in `.env` for best security practices.
+  - Contact form uses the `VITE_FORMSPREE_ENDPOINT` environment variable, not a hardcoded URL.
 
-- **React** (functional components & hooks)
-- **Vite** (dev/build tooling)
-- **Tailwind CSS** (utility-first styling)
-- **Custom CSS** (global styles, scrollbars, animations)
-- **Formspree** (contact form backend)
-- **JavaScript (ES6+)**
-- **Intersection Observer API** (scroll animations)
-- **Google Fonts** (retro/pixel fonts)
-- **SVG Icons** & **Custom PNG Cursors**
-- **Accessibility Enhancements**
+- **Contact Form Integration**
+  - Formspree is used for secure contact form submission.
+
+- **Correct Project Structure**
+  - `api` folder is positioned in the project root for accurate Vercel deployment of serverless functions.
+
+- **Improved Local Development**
+  - Use `vercel dev` to run the project locally, testing serverless functions as they will work in production.
 
 ---
 
-## ⚡ Quick Start
+## 🛠 Tech Stack
 
-1. **Clone & Install**
+- **React** – Frontend UI
+- **Vite** – Development/build tool
+- **Tailwind CSS** – Utility-first CSS framework for styling
+- **Supabase PostgreSQL** – Cloud database for visitor counter
+- **Vercel Serverless Functions** – Serverless backend/API
+- **Formspree** – Contact form backend integration
+- **JavaScript** – Primary programming language
+- **CSS/HTML** – Styling and markup
+
+---
+
+## 📦 Getting Started
+
+1. **Clone the repository**
     ```bash
     git clone https://github.com/AhmedQw1/CV-Web-Portfolio.git
     cd CV-Web-Portfolio
     npm install
-    # or
-    yarn install
     ```
-2. **Run Locally**
+2. **Configure Environment Variables**
+    - Copy `.env.local.example` to `.env.local` and add your Supabase + Formspree credentials.
+
+3. **Run the Project Locally**
     ```bash
-    npm run dev
-    # or
-    yarn dev
+    vercel dev
     ```
-3. **Build for Production**
+    > Use `vercel dev` to test frontend and backend together.
+
+4. **Build for Production**
     ```bash
     npm run build
-    # or
-    yarn build
     ```
-
----
-
-## 📦 Deploy
-
-- **Vercel** (recommended): Import the repo, use framework: Vite, output: `dist`
-- **Netlify**/**GitHub Pages**: Supported—see respective docs
 
 ---
 
 ## 🖼️ Screenshots
 
 ![Website Screenshot](src/assets/images/Website-Showcase.png)
-
----
-
-## ✏️ Customization
-
-- **Update content** in `src/data/` & components in `src/pages/`
-- **Swap images/fonts** in `src/assets/` & `index.css`
-- **Edit colors/fonts** in `tailwind.config.js` as needed
+<!-- Add more screenshots here if needed -->
 
 ---
 
