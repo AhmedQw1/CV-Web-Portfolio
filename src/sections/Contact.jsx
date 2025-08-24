@@ -42,11 +42,10 @@ const Contact = () => {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     
-    // Convert to 12-hour format with AM/PM
     let hours = date.getHours();
     const ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
-    hours = hours ? hours : 12;  // Convert 0 to 12
+    hours = hours ? hours : 12;
     
     const minutes = String(date.getMinutes()).padStart(2, '0');
     const seconds = String(date.getSeconds()).padStart(2, '0');
@@ -69,7 +68,9 @@ const Contact = () => {
       });
       return;
     }
-    fetch('https://formspree.io/f/xvgqkypj', {
+    
+    // UPDATED: Use the environment variable for the endpoint
+    fetch(import.meta.env.VITE_FORMSPREE_ENDPOINT, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -108,38 +109,31 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-stripe-pattern bg-white dark:bg-gray-900" ref={sectionRef}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 reveal opacity-0">
-          {/* Web 2.0 Style Header */}
           <div className="relative inline-block">
             <div className="bg-web2-purple text-white font-comic text-2xl md:text-3xl py-5 px-5 rounded-lg shadow-web2 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
               <h2 className="relative z-10 text-shadow">
                 Get In <span className="text-web2-yellow font-bold">Touch</span>
               </h2>
-
-            <div className="absolute right-0 top-0 bottom-2/3 bg-web2-red text-white px-[3px] py-[0.124px] shadow-md text-[9px] font-bold rounded-[5px]">
-              MAIL ME
-            </div>
+              <div className="absolute right-0 top-0 bottom-2/3 bg-web2-red text-white px-[3px] py-[0.124px] shadow-md text-[9px] font-bold rounded-[5px]">
+                MAIL ME
+              </div>
             </div>
           </div>
-          
-          {/* Marquee scrolling text classic 2010 web style LOL */}
           <div className="mt-6 bg-black text-web2-green font-retro py-2 overflow-hidden whitespace-nowrap">
             <div className="animate-marquee inline-block">
               ★ SEND ME A MESSAGE ★ I'LL GET BACK TO YOU SOON ★ LET'S WORK TOGETHER ★ DROP ME A LINE ★
             </div>
           </div>
         </div>
-        
         <div className="flex flex-col md:flex-row gap-8 max-w-4xl mx-auto">
           <div className="md:w-1/3 reveal opacity-0">
             <div className="border-4 border-gray-300 bg-white rounded-lg p-6 shadow-web2 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
-              
               <div className="relative z-10">
                 <h3 className="text-xl font-comic font-bold mb-6 text-retro-navy">
                   Contact Info
                 </h3>
-                
                 <div className="space-y-6">
                   <div className="flex items-start">
                     <div className="bg-gradient-blue w-10 h-10 rounded-md shadow-web2 flex items-center justify-center text-white relative overflow-hidden">
@@ -153,7 +147,6 @@ const Contact = () => {
                       <p className="text-gray-800 font-medium font-comic">ahmedsalmen00@gmail.com</p>
                     </div>
                   </div>
-                  
                   <div className="flex items-start">
                     <div className="bg-gradient-blue w-10 h-10 rounded-md shadow-web2 flex items-center justify-center text-white relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
@@ -167,7 +160,6 @@ const Contact = () => {
                       <p className="text-gray-800 font-medium font-comic">Abu Dhabi, UAE</p>
                     </div>
                   </div>
-                  
                   <div>
                     <p className="text-gray-500 text-sm font-comic mb-3">Follow Me</p>
                     <div className="flex space-x-2 mt-2">
@@ -196,25 +188,20 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-              
               <div className="absolute top-0 right-0 w-0 h-0 border-t-[25px] border-r-[25px] border-t-web2-purple border-r-transparent transform scale-x-[-1]"></div>
             </div>
           </div>
-          
           <div className="md:w-2/3 reveal opacity-0">
             <form 
               onSubmit={handleSubmit}
               className="border-4 border-gray-300 bg-white rounded-lg p-6 shadow-web2 relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
-              
               <div className="relative z-10">
-                {/* Web 2.0 Form Header */}
                 <div className="bg-gradient-blue text-white py-3 px-4 rounded-md shadow-web2 mb-6 relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
                   <h3 className="font-comic font-bold text-center text-lg relative z-10">Send Me a Message</h3>
                 </div>
-                
                 {submitMessage.text && (
                   <div className={`mb-6 p-4 rounded-lg border-2 ${
                     submitMessage.type === 'success' 
@@ -224,7 +211,6 @@ const Contact = () => {
                     {submitMessage.text}
                   </div>
                 )}
-                
                 <div className="mb-6">
                   <label htmlFor="name" className="block text-gray-700 mb-2 font-comic font-bold">Your Name</label>
                   <div className="border-2 border-gray-300 rounded-md overflow-hidden shadow-sm">
@@ -239,7 +225,6 @@ const Contact = () => {
                     />
                   </div>
                 </div>
-                
                 <div className="mb-6">
                   <label htmlFor="email" className="block text-gray-700 mb-2 font-comic font-bold">Your Email</label>
                   <div className="border-2 border-gray-300 rounded-md overflow-hidden shadow-sm">
@@ -254,7 +239,6 @@ const Contact = () => {
                     />
                   </div>
                 </div>
-                
                 <div className="mb-8">
                   <label htmlFor="message" className="block text-gray-700 mb-2 font-comic font-bold">Your Message</label>
                   <div className="border-2 border-gray-300 rounded-md overflow-hidden shadow-sm">
@@ -269,7 +253,6 @@ const Contact = () => {
                     ></textarea>
                   </div>
                 </div>
-                
                 <button
                   type="submit"
                   className="w-full bg-gradient-blue text-white px-6 py-3 rounded-md border-2 border-blue-700 font-bold shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-comic"
@@ -282,17 +265,12 @@ const Contact = () => {
                     Send Message
                   </span>
                 </button>
-                
-                {/* Classic 2010 era mandatory fields notice */}
                 <div className="mt-4 text-xs text-gray-500 text-center font-comic">
                   * All fields are required. Your information will never be shared.
                 </div>
               </div>
-
               <div className="absolute top-0 right-0 w-0 h-0 border-t-[25px] border-r-[25px] border-t-web2-blue border-r-transparent transform scale-x-[-1]"></div>
             </form>
-            
-            {/* Classic visitor counter with live timestamp */}
             <div className="mt-6 flex justify-center">
               <div className="bg-black text-green-400 font-mono px-4 py-2 rounded-md border-2 border-green-500 text-sm">
                 Current Time: {formatTime(currentTime)}
