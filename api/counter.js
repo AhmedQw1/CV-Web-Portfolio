@@ -28,6 +28,7 @@ export default async function handler(request, response) {
     }
     return response.status(200).json({ count });
   } catch (error) {
-    return response.status(500).json({ error: 'Could not process counter.' });
+    console.error('Counter API error:', error);
+    return response.status(500).json({ error: error.message || 'Could not process counter.' });
   }
 }
