@@ -4,20 +4,16 @@ import PauseMenu from '../components/PauseMenu';
 
 const SecretPage = ({ onBack }) => {
   const [gameState, setGameState] = useState('start'); // 'start', 'playing', 'paused', 'gameOver'
-  const [finalScore, setFinalScore] = useState(0);
 
   const handleStart = useCallback(() => {
-    setFinalScore(0); // Reset score on new game
     setGameState('playing');
   }, []);
 
-  const handleGameOver = useCallback((score) => {
-    setFinalScore(score);
+  const handleGameOver = useCallback(() => {
     setGameState('gameOver');
   }, []);
 
   const handleRestart = useCallback(() => {
-    setFinalScore(0);
     setGameState('start');
   }, []);
 
@@ -25,17 +21,33 @@ const SecretPage = ({ onBack }) => {
     setGameState('playing');
   }, []);
 
+  // --- UPDATE: This useEffect now toggles the pause menu ---
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && gameState === 'playing') {
-        setGameState('paused');
+      if (e.key === 'Escape') {
+        if (gameState === 'playing') {
+          setGameState('paused');
+        } else if (gameState === 'paused') {
+          setGameState('playing'); // Resume the game
+        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [gameState]);
 
-  // Determine if the game canvas should be visible
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden' && gameState === 'playing') {
+        setGameState('paused');
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [gameState]);
+
   const isGameVisible = gameState === 'playing' || gameState === 'paused';
 
   return (
@@ -65,15 +77,13 @@ const SecretPage = ({ onBack }) => {
           <Game
             isPaused={gameState === 'paused'}
             onGameOver={handleGameOver}
-            key={finalScore} // This is a trick to force a re-render and reset the game on restart
           />
         )}
 
         {gameState === 'gameOver' && (
           <div className="animate-fade-in bg-white dark:bg-gray-800 p-8 rounded-lg border-4 border-gray-300 shadow-web2">
             <h3 className="font-pixel text-3xl text-web2-red mb-4">GAME OVER</h3>
-            <p className="font-comic text-xl mb-6 dark:text-white">Your Final Score: {finalScore}</p>
-            <button onClick={handleRestart} className="bg-gradient-blue text-white font-pixel px-6 py-3 rounded-md border-2 border-blue-700 font-bold shadow-web2 hover:shadow-glossy">
+            <button onClick={handleStart} className="bg-gradient-blue text-white font-pixel px-6 py-3 rounded-md border-2 border-blue-700 font-bold shadow-web2 hover:shadow-glossy">
               Play Again
             </button>
           </div>

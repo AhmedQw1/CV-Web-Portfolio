@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 
 // Game constants
 const CANVAS_WIDTH = 500;
@@ -6,23 +6,25 @@ const CANVAS_HEIGHT = 500;
 const PLAYER_WIDTH = 30;
 const PLAYER_HEIGHT = 20;
 const PROJECTILE_SPEED = 7;
-const ENEMY_SPEED = 0.9; // Adjusted speed again, slightly faster
+const ENEMY_SPEED = 0.9;
 const ENEMY_SPAWN_RATE = 1200;
 
-const Game = ({ onGameOver }) => {
+// 1. UPDATE: The component now accepts an `isPaused` prop
+const Game = ({ onGameOver, isPaused }) => {
   const canvasRef = useRef(null);
-  const [score, setScore] = useState(0);
 
-  // Refs for game state to avoid re-renders and stale closures
+  // Refs for game state
   const playerRef = useRef({ x: CANVAS_WIDTH / 2 - PLAYER_WIDTH / 2, y: CANVAS_HEIGHT - PLAYER_HEIGHT - 10 });
   const projectilesRef = useRef([]);
   const enemiesRef = useRef([]);
   const keysRef = useRef({ ArrowLeft: false, ArrowRight: false, Space: false });
   const lastShotTimeRef = useRef(0);
-  const scoreRef = useRef(0); // Use a ref for the most up-to-date score
+  
+  // Refs to hold the animation and interval IDs so we can stop them
   const animationFrameId = useRef();
+  const enemyIntervalId = useRef();
 
-  // --- Keyboard Controls ---
+  // --- Keyboard Controls (No changes here) ---
   useEffect(() => {
     const handleKeyDown = (e) => { e.preventDefault(); keysRef.current[e.code] = true; };
     const handleKeyUp = (e) => { e.preventDefault(); keysRef.current[e.code] = false; };
@@ -34,13 +36,12 @@ const Game = ({ onGameOver }) => {
     };
   }, []);
 
-  // --- Main Game Loop in a useCallback to keep it stable ---
+  // --- Main Game Loop (No changes here) ---
   const gameLoop = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
-    // Clear canvas
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     const player = playerRef.current;
@@ -71,16 +72,15 @@ const Game = ({ onGameOver }) => {
     enemies.forEach((e) => {
       e.y += ENEMY_SPEED;
       if (e.y > CANVAS_HEIGHT) {
-        // This is now the ONLY lose condition
         cancelAnimationFrame(animationFrameId.current);
-        onGameOver(scoreRef.current);
+        onGameOver();
         return;
       }
       ctx.fillStyle = '#FF3333';
       ctx.fillRect(e.x, e.y, 25, 25);
     });
 
-    // --- Collision Detection ---
+    // Collision Detection
     for (let i = projectiles.length - 1; i >= 0; i--) {
       for (let j = enemies.length - 1; j >= 0; j--) {
         const p = projectiles[i];
@@ -88,8 +88,6 @@ const Game = ({ onGameOver }) => {
         if (p && e && p.x < e.x + 25 && p.x + 5 > e.x && p.y < e.y + 25 && p.y + 10 > e.y) {
           projectiles.splice(i, 1);
           enemies.splice(j, 1);
-          scoreRef.current += 10;
-          setScore(scoreRef.current);
           break;
         }
       }
@@ -99,7 +97,7 @@ const Game = ({ onGameOver }) => {
     for (let i = enemies.length - 1; i >= 0; i--) {
       const e = enemies[i];
       if (player.x < e.x + 25 && player.x + PLAYER_WIDTH > e.x && player.y < e.y + 25 && player.y + PLAYER_HEIGHT > e.y) {
-        enemies.splice(i, 1); // Enemy is destroyed, no game over
+        enemies.splice(i, 1);
       }
     }
 
@@ -107,30 +105,34 @@ const Game = ({ onGameOver }) => {
     ctx.fillStyle = '#0080FF';
     ctx.fillRect(player.x, player.y, PLAYER_WIDTH, PLAYER_HEIGHT);
     
-    // Request next frame
     animationFrameId.current = requestAnimationFrame(gameLoop);
   }, [onGameOver]);
 
-  // Effect to manage the game loop and enemy spawning
+  // 2. UPDATE: This effect now handles pausing and resuming
   useEffect(() => {
-    // Start the game loop
+    // If the game is paused, stop the animation and enemy spawning, then exit
+    if (isPaused) {
+      cancelAnimationFrame(animationFrameId.current);
+      clearInterval(enemyIntervalId.current);
+      return;
+    }
+
+    // If the game is not paused, start the animation frame loop and enemy spawning
     animationFrameId.current = requestAnimationFrame(gameLoop);
-    
-    // Start spawning enemies
-    const spawnInterval = setInterval(() => {
+    enemyIntervalId.current = setInterval(() => {
       enemiesRef.current.push({ x: Math.random() * (CANVAS_WIDTH - 25), y: -25 });
     }, ENEMY_SPAWN_RATE);
 
-    // Cleanup function
+    // This cleanup function will stop the game when the component is unmounted
+    // or when the `isPaused` prop changes from false to true.
     return () => {
       cancelAnimationFrame(animationFrameId.current);
-      clearInterval(spawnInterval);
+      clearInterval(enemyIntervalId.current);
     };
-  }, [gameLoop]);
+  }, [isPaused, gameLoop]); // The effect now depends on `isPaused`
 
   return (
     <div>
-      <div className="font-pixel text-2xl text-center mb-4 dark:text-white">SCORE: {score}</div>
       <canvas
         ref={canvasRef}
         width={CANVAS_WIDTH}
