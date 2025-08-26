@@ -7,7 +7,6 @@ const Header = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   
   useEffect(() => {
-    // Check user's preferred color scheme
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && 
         window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       setIsDarkMode(true);
@@ -17,16 +16,10 @@ const Header = () => {
       document.documentElement.classList.remove('dark');
     }
     
-    // Handle scroll events
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 20);
     };
     
-    // Update time every second
     const timeInterval = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
@@ -39,7 +32,6 @@ const Header = () => {
     };
   }, []);
   
-  // Format date as Month DD, YYYY
   const getDateString = () => {
     return currentTime.toLocaleDateString('en-US', { 
       month: 'long', 
@@ -48,21 +40,16 @@ const Header = () => {
     });
   };
   
-  // Format in YYYY-MM-DD hh:mm:ss AM/PM (12-hour format)
   const formatTime = (date) => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
-    
-    // Convert to 12-hour format with AM/PM
     let hours = date.getHours();
     const ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
-    hours = hours ? hours : 12; // Convert 0 to 12
-    
+    hours = hours ? hours : 12;
     const minutes = String(date.getMinutes()).padStart(2, '0');
     const seconds = String(date.getSeconds()).padStart(2, '0');
-    
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds} ${ampm}`;
   };
 
@@ -70,12 +57,11 @@ const Header = () => {
     if (isDarkMode) {
       document.documentElement.classList.remove('dark');
       localStorage.theme = 'light';
-      setIsDarkMode(false);
     } else {
       document.documentElement.classList.add('dark');
       localStorage.theme = 'dark';
-      setIsDarkMode(true);
     }
+    setIsDarkMode(!isDarkMode);
   };
 
   const navItems = [
@@ -88,7 +74,12 @@ const Header = () => {
 
   return (
     <header className={`w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 dark:bg-gray-900/95 shadow-md backdrop-blur-sm' : 'bg-dot-pattern'}`}>
-      {/* Web 2.0 Top Bar with real-time */}
+      <a 
+        href="#home" 
+        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:px-4 focus:py-2 focus:bg-web2-blue focus:text-white"
+      >
+        Skip to content
+      </a>
       <div className="bg-retro-navy text-white py-1 px-4 text-xs font-retro">
         <div className="container mx-auto flex justify-between items-center">
           <div>
@@ -100,7 +91,6 @@ const Header = () => {
       
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
-          {/* Logo with Web 2.0 style */}
           <a 
             href="#home" 
             className="relative inline-block"
@@ -113,7 +103,6 @@ const Header = () => {
             </div>
           </a>
           
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-2">
             {navItems.map((item) => (
               <a
@@ -141,7 +130,6 @@ const Header = () => {
             </button>
           </nav>
           
-          {/* Mobile Navigation Toggle */}
           <div className="md:hidden flex items-center">
             <button
               onClick={toggleDarkMode}
@@ -168,7 +156,6 @@ const Header = () => {
         </div>
       </div>
       
-      {/* Mobile Menu */}
       <div
         className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}
       >

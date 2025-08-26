@@ -21,8 +21,6 @@
   font-display: swap;
 }
 
-
-
 /* Custom animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
@@ -91,12 +89,12 @@ html, body {
   overflow-x: hidden;
   max-width: 100%;
   scroll-behavior: smooth;
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; /* Keep the base background color */
 }
 
 @layer base {
   html {
-    transition: background-color 0.5s ease, color 0.5s ease;
+    /* REMOVED transition from here */
     background-color: #f0f0f0;
     color: #222;
   }
@@ -104,7 +102,7 @@ html, body {
     @apply bg-gray-900 text-white;
   }
   body {
-    transition: background-color 0.5s ease, color 0.5s ease;
+    /* REMOVED transition from here */
     background-color: transparent;
   }
 }
@@ -162,16 +160,8 @@ html, body {
 a, button, [role="button"], .cursor-pointer {
   cursor: url('/cursors/link-cursor.png'), pointer;
 }
-@layer base {
-  html {
-    transition: background-color 0.5s ease, color 0.5s ease;
-  }
-  
-  html.dark {
-    @apply bg-gray-900 text-white;
-  }
-  
-  body {
-    transition: background-color 0.5s ease, color 0.5s ease;
-  }
+
+/* NEW: Add this class for targeted transitions */
+.theme-transition {
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
