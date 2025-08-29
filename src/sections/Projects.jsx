@@ -77,7 +77,7 @@ const allProjects = [
     ],
     description: "A sleek, modern web-based calculator with a clean interface and responsive design, perfect for both simple and complex calculations.",
     githubUrl: "https://github.com/AhmedQw1/web-calculator.git",
-    liveUrl: "https://ahmedqw1.github.io/web-calculator/",
+    // liveUrl removed
     labelColor: "gray-500"
   },
   {
@@ -229,8 +229,7 @@ const Projects = () => {
                           <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
                           <span className="relative z-10">GitHub</span>
                         </a>
-                        
-                        {project.liveUrl && (
+                        {project.liveUrl && project.title !== "Web Calculator" && (
                           <a 
                             href={project.liveUrl}
                             target="_blank" 
@@ -241,7 +240,6 @@ const Projects = () => {
                             <span className="relative z-10">Live Demo</span>
                           </a>
                         )}
-                        
                         {project.downloadUrl && (
                           <a 
                             href={project.downloadUrl}
