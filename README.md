@@ -8,9 +8,9 @@ A web-based portfolio built with modern technologies, featuring a dynamic visito
 
 ---
 
-## 🚀 Live Demo
+## 🚀 Live
 
-[👉 View the site here](https://cv-web-portfolio.vercel.app/)
+[👉 View the site here](https://www.cv-web.me/)
 
 ---
 
