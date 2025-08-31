@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Button, Card } from 'pixel-retroui';
 import profileImage from '../assets/images/Profile.png';
 
 const Hero = () => {
@@ -19,13 +20,17 @@ const Hero = () => {
     elements.forEach(el => observer.observe(el));
 
     const updateVisitorCount = async () => {
-      const hasVisited = localStorage.getItem('hasVisitedPortfolio');
-      let endpoint = '/api/counter';
-
-      if (hasVisited) {
-        endpoint = '/api/counter?action=get';
-      } else {
-        localStorage.setItem('hasVisitedPortfolio', 'true');
+      // Improved visitor tracking logic
+      const visitorId = localStorage.getItem('portfolioVisitorId') || 
+                       sessionStorage.getItem('portfolioVisitorId');
+      
+      let endpoint = '/api/counter?action=get';
+      
+      // Only increment if no visitor ID exists in either storage
+      if (!visitorId) {
+        const newVisitorId = Date.now().toString() + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('portfolioVisitorId', newVisitorId);
+        sessionStorage.setItem('portfolioVisitorId', newVisitorId);
         endpoint = '/api/counter?action=increment';
       }
 
@@ -68,43 +73,69 @@ const Hero = () => {
             </div>
             <div className="bg-black p-2 mb-8 border-2 border-web2-green overflow-hidden font-retro">
               <div className="animate-blink text-web2-green">
-                &gt; <span className="typing-effect">Software Engineer</span>_
+                &gt; <span className="typing-effect font-minecraft">Software Engineer</span>_
               </div>
             </div>
             <p className="text-xl mb-8 font-comic text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 p-4 border-2 border-gray-300 dark:border-gray-700 rounded-md shadow-md">
               Passionate about building web and desktop applications with modern technologies.
             </p>
+            
+            {/* Updated buttons with pixel-retroui */}
             <div className="flex flex-wrap gap-4">
-              <a 
-                href="#projects" 
-                className="bg-gradient-blue text-white px-6 py-3 rounded-md border-2 border-blue-700 font-bold shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-comic"
+              <Button 
+                bg="#0066cc" 
+                textColor="#ffffff"
+                shadow="#004499"
+                className="px-6 py-3 font-bold transition-all hover:scale-105 cursor-pointer"
+                onClick={() => {
+                  document.getElementById('projects')?.scrollIntoView({ 
+                    behavior: 'smooth' 
+                  });
+                }}
               >
-                <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
-                <span className="relative z-10 flex items-center">
+                <span className="flex items-center font-minecraft">
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
                   </svg>
                   View My Work
                 </span>
-              </a>
-              <a 
-                href="#contact" 
-                className="bg-gradient-button text-black dark:text-black px-6 py-3 rounded-md border-2 border-gray-300 dark:border-gray-500 font-bold shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-comic dark:bg-gray-800"
+              </Button>
+              
+              <Button 
+                bg="#ff6b6b" 
+                textColor="#ffffff"
+                shadow="#cc5555"
+                className="px-6 py-3 font-bold transition-all hover:scale-105 cursor-pointer"
+                onClick={() => {
+                  document.getElementById('contact')?.scrollIntoView({ 
+                    behavior: 'smooth' 
+                  });
+                }}
               >
-                <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-transparent h-1/2"></div>
-                <span className="relative z-10 flex items-center">
+                <span className="flex items-center font-minecraft">
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   Contact Me
                 </span>
-              </a>
+              </Button>
             </div>
-            {/* DYNAMIC VISITOR COUNTER */}
-            <div className="mt-8 inline-block bg-black text-green-400 font-mono px-4 py-2 rounded-md border-2 border-green-500">
-              <div className="text-sm">Visitors: {visitorCount}</div>
+            
+            {/* Updated visitor counter with pixel-retroui */}
+            <div className="mt-8">
+              <Card 
+                bg="#000000" 
+                textColor="#00ff00"
+                shadow="#333333"
+                className="inline-block px-4 py-2 border-2 border-green-500"
+              >
+                <div className="font-minecraft text-sm animate-pulse">
+                  &gt; Visitors: <span className="text-green-400">{visitorCount}</span>
+                </div>
+              </Card>
             </div>
           </div>
+          
           <div className="md:w-1/2 mt-12 md:mt-0 reveal opacity-0 flex justify-center">
             <div className="relative">
               <div className="border-8 border-white bg-white shadow-lg rounded-md p-2 transform rotate-3">
@@ -116,15 +147,27 @@ const Hero = () => {
                 <div className="absolute -top-2 -right-2 w-8 h-8 bg-web2-yellow transform rotate-45"></div>
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-16 h-6 bg-gradient-to-b from-gray-200 to-gray-300 opacity-80"></div>
               </div>
-              <div className="absolute -bottom-6 -right-4 font-comic text-sm border-2 border-gray-200 p-3 shadow-md transform -rotate-2 rounded-md bg-white dark:bg-gray-800 text-retro-navy dark:text-white transition-colors duration-300">
-                Developer at work! 🚀
+              
+              {/* Updated speech bubble with pixel-retroui */}
+              <div className="absolute -bottom-6 -right-4">
+                <Card 
+                  bg="#ffffff" 
+                  textColor="#000000"
+                  shadow="#cccccc"
+                  className="p-3 transform -rotate-2"
+                >
+                  <div className="font-minecraft text-sm">
+                    Developer at work! 🚀
+                  </div>
+                </Card>
               </div>
+              
               <div className="absolute -top-12 -right-12">
                 <div className="relative w-24 h-24">
                   <div className="absolute inset-0 bg-web2-red rounded-full animate-spin-slow"></div>
                   <div className="absolute inset-0 bg-web2-orange rounded-full transform rotate-45 animate-spin-slow" style={{animationDirection: 'reverse'}}></div>
                   <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">
-                    <span className="animate-bounce-slow">Hi!</span>
+                    <span className="animate-bounce-slow font-minecraft">Hi!</span>
                   </div>
                 </div>
               </div>
