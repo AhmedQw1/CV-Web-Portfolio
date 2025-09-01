@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { Card } from 'pixel-retroui';
 
 const Skills = () => {
   const sectionRef = useRef(null);
@@ -21,197 +22,108 @@ const Skills = () => {
     };
   }, []);
 
-  // Lists of skills by category
-  const webDevSkills = [
-    "HTML5",
-    "CSS3",
-    "JavaScript",
-    "React",
-    "Tailwind CSS"
+  const skillCategories = [
+    {
+      title: "Frontend Development",
+      color: "#3498db",
+      icon: "🌐",
+      skills: [
+        { name: "React", experience: "Advanced", description: "Component-based apps, hooks, state management" },
+        { name: "JavaScript", experience: "Advanced", description: "ES6+, async/await, DOM manipulation" },
+        { name: "HTML5", experience: "Expert", description: "Semantic markup, accessibility, forms" },
+        { name: "CSS3", experience: "Advanced", description: "Flexbox, Grid, animations, responsive design" },
+        { name: "Tailwind CSS", experience: "Advanced", description: "Utility-first styling, custom components" }
+      ]
+    },
+    {
+      title: "Backend & Desktop", 
+      color: "#e74c3c",
+      icon: "⚙️",
+      skills: [
+        { name: "Java", experience: "Advanced", description: "OOP, Spring Boot, desktop applications" },
+        { name: "JavaFX", experience: "Intermediate", description: "GUI applications, FXML, Scene Builder" },
+        { name: "MySQL", experience: "Intermediate", description: "Database design, queries, optimization" },
+        { name: "Spring Boot", experience: "Intermediate", description: "REST APIs, dependency injection" }
+      ]
+    },
+    {
+      title: "Tools & Workflow",
+      color: "#f39c12",
+      icon: "🛠️",
+      skills: [
+        { name: "Git & GitHub", experience: "Advanced", description: "Version control, collaboration, CI/CD" },
+        { name: "VS Code", experience: "Expert", description: "Extensions, debugging, productivity" },
+        { name: "IntelliJ IDEA", experience: "Advanced", description: "Java development, refactoring, debugging" },
+        { name: "Figma", experience: "Intermediate", description: "UI/UX design, prototyping, collaboration" }
+      ]
+    },
+    {
+      title: "Other Technologies",
+      color: "#9b59b6", 
+      icon: "🚀",
+      skills: [
+        { name: "Firebase", experience: "Intermediate", description: "Real-time database, authentication" },
+        { name: "Vercel", experience: "Intermediate", description: "Deployment, hosting, domain management" },
+        { name: "API Integration", experience: "Advanced", description: "REST APIs, data fetching, error handling" },
+        { name: "Responsive Design", experience: "Advanced", description: "Mobile-first, cross-browser compatibility" }
+      ]
+    }
   ];
-  
-  const desktopSkills = [
-    "Java",
-    "JavaFX",
-    "FXML",
-    "Scene Builder"
-  ];
-  
-  const aiSkills = [
-    "Prompt Engineering",
-    "Chatbot Development",
-    "AI APIs",
-    "Natural Language Processing (NLP)"
-  ];
-  
-  const toolsSkills = [
-    "VS Code",
-    "IntelliJ IDEA",
-    "Git & GitHub",
-    "Figma"
-  ];
-  
-  // Simple skill item component
-  const SkillItem = ({ name }) => (
-    <div className="mb-2 border-2 border-gray-200 bg-white rounded-lg p-3 shadow-web2 relative overflow-hidden transition-transform hover:scale-105 duration-300">
-      <div className="absolute inset-0 bg-gradient-to-b from-white/50 to-transparent h-1/2"></div>
-      <div className="flex items-center relative z-10">
-        <span className="font-comic font-bold text-retro-navy">{name}</span>
-      </div>
-    </div>
-  );
 
   return (
     <section id="skills" className="py-20 bg-noise-pattern bg-white dark:bg-gray-900" ref={sectionRef}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 reveal opacity-0">
-          <div className="relative inline-block">
-            <div className="bg-web2-orange text-white font-comic text-2xl md:text-3xl py-3 px-8 rounded-lg shadow-web2 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
-              <h2 className="relative z-10 text-shadow">
-                My Skills & <span className="text-web2-yellow font-bold">Expertise</span>
-              </h2>
-
-              {/* HOT! label */}
-              <div className="absolute right-0 top-0 bottom-2/4 bg-web2-red text-white px-[3px] py-[1px] shadow-md text-[9px] font-bold rounded-[5px]">
-                HOT!
-              </div>
+          <Card
+            bg="#FF9800"
+            textColor="#ffffff"
+            shadowColor="#F57C00"
+            className="inline-block p-6 relative overflow-hidden"
+          >
+            <h2 className="text-2xl md:text-3xl font-minecraft font-bold text-shadow">
+              My Skills & <span className="text-yellow-200">Expertise</span>
+            </h2>
+            <div className="absolute right-0 top-0 bg-red-500 text-white px-2 py-1 text-xs font-bold rounded">
+              HOT!
             </div>
-          </div>
+          </Card>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Web Development */}
-          <div className="reveal opacity-0">
-            <div className="border-4 border-gray-300 bg-white rounded-lg p-6 shadow-web2 relative overflow-hidden h-full">
-              <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
-              
-              <div className="relative z-10">
-                <div className="bg-gradient-blue text-white py-3 px-4 rounded-md shadow-web2 mb-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
-                  <h3 className="font-comic font-bold text-center text-lg relative z-10">Web Development</h3>
-                  
-                  <div className="absolute right-0 top-0 bg-web2-green text-white px-1 py-0.5 shadow-md text-[7px] font-bold">
-                    Specialist
-                  </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {skillCategories.map((category, index) => (
+            <div key={index} className="reveal opacity-0">
+              <Card
+                bg="#ffffff"
+                textColor="#000000"
+                borderColor={category.color}
+                shadowColor="#cccccc"
+                className="p-6 h-full"
+              >
+                <div className="flex items-center justify-center mb-6">
+                  <span className="text-3xl mr-3">{category.icon}</span>
+                  <h3 className="font-minecraft text-xl font-bold text-center" 
+                      style={{ color: category.color }}>
+                    {category.title}
+                  </h3>
                 </div>
                 
-                <div className="space-y-2">
-                  {webDevSkills.map((skill, index) => (
-                    <SkillItem key={index} name={skill} />
+                <div className="space-y-6">
+                  {category.skills.map((skill, skillIndex) => (
+                    <div key={skillIndex} className="bg-gray-50 p-4 rounded-lg">
+                      <div className="mb-2">
+                        <span className="font-minecraft text-lg font-bold">
+                          {skill.name}
+                        </span>
+                      </div>
+                      <p className="font-minecraft text-sm text-gray-600">
+                        {skill.description}
+                      </p>
+                    </div>
                   ))}
                 </div>
-                
-                <div className="mt-4 bg-gradient-to-r from-web2-purple to-web2-blue p-3 rounded-lg text-white text-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
-                  <div className="relative z-10 font-comic">
-                    <span className="block text-sm">Building with React & TailwindCSS</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="absolute top-0 right-0 w-0 h-0 border-t-[25px] border-r-[25px] border-t-web2-blue border-r-transparent transform scale-x-[-1]"></div>
+              </Card>
             </div>
-          </div>
-          
-          {/* Desktop Development */}
-          <div className="reveal opacity-0">
-            <div className="border-4 border-gray-300 bg-white rounded-lg p-6 shadow-web2 relative overflow-hidden h-full">
-              <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
-              
-              <div className="relative z-10">
-                <div className="bg-gradient-blue text-white py-3 px-4 rounded-md shadow-web2 mb-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
-                  <h3 className="font-comic font-bold text-center text-lg relative z-10">Desktop Development</h3>
-                  
-                  <div className="absolute right-0 top-0 bg-web2-green text-white px-1 py-0.5 shadow-md text-[7px] font-bold">
-                    Skilled
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  {desktopSkills.map((skill, index) => (
-                    <SkillItem key={index} name={skill} />
-                  ))}
-                </div>
-                
-                <div className="mt-4 bg-gradient-to-r from-web2-green to-web2-blue p-3 rounded-lg text-white text-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
-                  <div className="relative z-10 font-comic">
-                    <span className="block text-sm">Building with JavaFX & Scene Builder</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="absolute top-0 right-0 w-0 h-0 border-t-[25px] border-r-[25px] border-t-web2-blue border-r-transparent transform scale-x-[-1]"></div>
-            </div>
-          </div>
-
-          {/* AI & Automation - New Category */}
-          <div className="reveal opacity-0">
-            <div className="border-4 border-gray-300 bg-white rounded-lg p-6 shadow-web2 relative overflow-hidden h-full">
-              <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
-              
-              <div className="relative z-10">
-                <div className="bg-gradient-blue text-white py-3 px-4 rounded-md shadow-web2 mb-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
-                  <h3 className="font-comic font-bold text-center text-lg relative z-10">AI & Automation</h3>
-                  
-                  <div className="absolute right-0 top-0 bg-web2-red text-white px-1 py-0.5 shadow-md text-[7px] font-bold">
-                    NEW!
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  {aiSkills.map((skill, index) => (
-                    <SkillItem key={index} name={skill} />
-                  ))}
-                </div>
-                
-                <div className="mt-4 bg-gradient-to-r from-web2-pink to-web2-purple p-3 rounded-lg text-white text-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
-                  <div className="relative z-10 font-comic">
-                    <span className="block text-sm">Leveraging AI Technologies</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="absolute top-0 right-0 w-0 h-0 border-t-[25px] border-r-[25px] border-t-web2-blue border-r-transparent transform scale-x-[-1]"></div>
-            </div>
-          </div>
-          
-          {/* Tools & Technologies */}
-          <div className="reveal opacity-0">
-            <div className="border-4 border-gray-300 bg-white rounded-lg p-6 shadow-web2 relative overflow-hidden h-full">
-              <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
-              
-              <div className="relative z-10">
-                <div className="bg-gradient-blue text-white py-3 px-4 rounded-md shadow-web2 mb-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
-                  <h3 className="font-comic font-bold text-center text-lg relative z-10">Tools & Technologies</h3>
-                  
-                  <div className="absolute right-0 top-0 bg-web2-green text-white px-1 py-0.5 shadow-md text-[7px] font-bold">
-                    Experienced
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  {toolsSkills.map((skill, index) => (
-                    <SkillItem key={index} name={skill} />
-                  ))}
-                </div>
-                
-                <div className="mt-4 bg-gradient-to-r from-web2-orange to-web2-red p-3 rounded-lg text-white text-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent h-1/2"></div>
-                  <div className="relative z-10 font-comic">
-                    <span className="block text-sm">Working with Modern Dev Tools</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="absolute top-0 right-0 w-0 h-0 border-t-[25px] border-r-[25px] border-t-web2-blue border-r-transparent transform scale-x-[-1]"></div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

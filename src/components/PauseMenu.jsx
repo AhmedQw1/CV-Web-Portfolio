@@ -1,31 +1,47 @@
 import React from 'react';
+import { Card, Button } from 'pixel-retroui';
 
 const PauseMenu = ({ onResume, onRestart, onBack }) => {
   return (
     <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white dark:bg-gray-800 p-8 rounded-lg border-4 border-gray-300 shadow-web2 text-center animate-fade-in">
-        <h2 className="font-pixel text-3xl text-retro-navy dark:text-white mb-6">Game Paused</h2>
+      <Card
+        bg="#ffffff"
+        textColor="#000000"
+        borderColor="#333333"
+        shadowColor="#666666"
+        className="p-8 text-center animate-fade-in"
+      >
+        <h2 className="font-pixel text-3xl text-retro-navy mb-6">Game Paused</h2>
         <div className="flex flex-col space-y-4">
-          <button
+          <Button
+            bg="#4CAF50"
+            textColor="#ffffff"
+            shadow="#2E7D32"
             onClick={onResume}
-            className="bg-web2-green text-white font-pixel px-6 py-3 rounded-md border-2 border-green-700 font-bold shadow-web2 hover:shadow-glossy"
+            className="px-6 py-3 font-pixel font-bold"
           >
             Resume
-          </button>
-          <button
+          </Button>
+          <Button
+            bg="#2196F3"
+            textColor="#ffffff"
+            shadow="#1976D2"
             onClick={onRestart}
-            className="bg-gradient-blue text-white font-pixel px-6 py-3 rounded-md border-2 border-blue-700 font-bold shadow-web2 hover:shadow-glossy"
+            className="px-6 py-3 font-pixel font-bold"
           >
             Restart
-          </button>
-          <button
+          </Button>
+          <Button
+            bg="#FF9800"
+            textColor="#ffffff"
+            shadow="#F57C00"
             onClick={onBack}
-            className="bg-gradient-button text-black font-pixel px-6 py-3 rounded-md border-2 border-gray-300 font-bold shadow-web2 hover:shadow-glossy"
+            className="px-6 py-3 font-pixel font-bold"
           >
             Go Back to Portfolio
-          </button>
+          </Button>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

@@ -24,21 +24,47 @@ const Hero = () => {
       const visitorId = localStorage.getItem('portfolioVisitorId') || 
                        sessionStorage.getItem('portfolioVisitorId');
       
-      let endpoint = '/api/counter?action=get';
-      
-      // Only increment if no visitor ID exists in either storage
-      if (!visitorId) {
-        const newVisitorId = Date.now().toString() + Math.random().toString(36).substr(2, 9);
-        localStorage.setItem('portfolioVisitorId', newVisitorId);
-        sessionStorage.setItem('portfolioVisitorId', newVisitorId);
-        endpoint = '/api/counter?action=increment';
-      }
-
       try {
-        const response = await fetch(endpoint);
-        const data = await response.json();
-        if (data.count !== undefined) {
-          setVisitorCount(data.count.toLocaleString());
+        let count;
+        
+        // Check if we're in development (Vite) or production (Vercel)
+        const isDevelopment = window.location.hostname === 'localhost';
+        
+        if (isDevelopment) {
+          // Use a simple mock counter for development
+          let devCount = localStorage.getItem('devVisitorCount') || '0';
+          
+          // Only increment if no visitor ID exists in either storage
+          if (!visitorId) {
+            const newVisitorId = Date.now().toString() + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('portfolioVisitorId', newVisitorId);
+            sessionStorage.setItem('portfolioVisitorId', newVisitorId);
+            
+            // Increment the development counter
+            devCount = (parseInt(devCount) + 1).toString();
+            localStorage.setItem('devVisitorCount', devCount);
+          }
+          
+          count = parseInt(devCount);
+        } else {
+          // Use API endpoint in production (Vercel)
+          let endpoint = '/api/counter?action=get';
+          
+          // Only increment if no visitor ID exists in either storage
+          if (!visitorId) {
+            const newVisitorId = Date.now().toString() + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('portfolioVisitorId', newVisitorId);
+            sessionStorage.setItem('portfolioVisitorId', newVisitorId);
+            endpoint = '/api/counter?action=increment';
+          }
+
+          const response = await fetch(endpoint);
+          const data = await response.json();
+          count = data.count;
+        }
+        
+        if (count !== undefined) {
+          setVisitorCount(count.toLocaleString());
         }
       } catch (error) {
         console.error("Failed to update visitor count:", error);
@@ -64,19 +90,19 @@ const Hero = () => {
           <div className="md:w-1/2 reveal opacity-0">
             <div className="bg-web2-blue text-white py-4 px-6 rounded-lg shadow-web2 mb-6 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-comic font-bold text-shadow relative z-10">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-minecraft font-bold text-shadow relative z-10">
                 Hi, I'm <span className="text-web2-yellow">Ahmed Salmen</span>
               </h1>
               <div className="absolute right-0 top-0 bg-web2-red text-white px-[4px] py-[1px] shadow-md text-[9px] font-bold rounded-[5px]">
                 HELLO!
               </div>
             </div>
-            <div className="bg-black p-2 mb-8 border-2 border-web2-green overflow-hidden font-retro">
+            <div className="bg-black p-2 mb-8 border-2 border-web2-green overflow-hidden font-minecraft">
               <div className="animate-blink text-web2-green">
                 &gt; <span className="typing-effect font-minecraft">Software Engineer</span>_
               </div>
             </div>
-            <p className="text-xl mb-8 font-comic text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 p-4 border-2 border-gray-300 dark:border-gray-700 rounded-md shadow-md">
+            <p className="text-xl mb-8 font-minecraft text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 p-4 border-2 border-gray-300 dark:border-gray-700 rounded-md shadow-md">
               Passionate about building web and desktop applications with modern technologies.
             </p>
             

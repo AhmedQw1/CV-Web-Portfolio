@@ -40,7 +40,7 @@ const Footer = () => {
         <div className="flex flex-col items-center">
           {/* Web 2.0 style logo */}
           <a href="#home" className="relative inline-block mb-6">
-            <div className="bg-gradient-blue text-white font-comic text-xl py-2 px-4 rounded-lg shadow-web2 relative overflow-hidden">
+            <div className="bg-gradient-blue text-white font-minecraft text-xl py-2 px-4 rounded-lg shadow-web2 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
               <span className="relative z-10 text-shadow">
                 Ahmed<span className="text-web2-yellow font-bold">Salmen</span>
@@ -50,23 +50,23 @@ const Footer = () => {
           
           {/* Oldschool navigation buttons */}
           <div className="flex flex-wrap justify-center gap-3 mb-6">
-            <a href="#home" className="bg-gradient-button border-2 border-gray-300 px-3 py-1 rounded-md shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-comic text-sm text-gray-800">
+            <a href="#home" className="bg-gradient-button border-2 border-gray-300 px-3 py-1 rounded-md shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-minecraft text-sm text-gray-800">
               <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-transparent h-1/2"></div>
               <span className="relative z-10">Home</span>
             </a>
-            <a href="#about" className="bg-gradient-button border-2 border-gray-300 px-3 py-1 rounded-md shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-comic text-sm text-gray-800">
+            <a href="#about" className="bg-gradient-button border-2 border-gray-300 px-3 py-1 rounded-md shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-minecraft text-sm text-gray-800">
               <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-transparent h-1/2"></div>
               <span className="relative z-10">About</span>
             </a>
-            <a href="#skills" className="bg-gradient-button border-2 border-gray-300 px-3 py-1 rounded-md shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-comic text-sm text-gray-800">
+            <a href="#skills" className="bg-gradient-button border-2 border-gray-300 px-3 py-1 rounded-md shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-minecraft text-sm text-gray-800">
               <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-transparent h-1/2"></div>
               <span className="relative z-10">Skills</span>
             </a>
-            <a href="#projects" className="bg-gradient-button border-2 border-gray-300 px-3 py-1 rounded-md shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-comic text-sm text-gray-800">
+            <a href="#projects" className="bg-gradient-button border-2 border-gray-300 px-3 py-1 rounded-md shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-minecraft text-sm text-gray-800">
               <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-transparent h-1/2"></div>
               <span className="relative z-10">Projects</span>
             </a>
-            <a href="#contact" className="bg-gradient-button border-2 border-gray-300 px-3 py-1 rounded-md shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-comic text-sm text-gray-800">
+            <a href="#contact" className="bg-gradient-button border-2 border-gray-300 px-3 py-1 rounded-md shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-minecraft text-sm text-gray-800">
               <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-transparent h-1/2"></div>
               <span className="relative z-10">Contact</span>
             </a>
@@ -87,7 +87,7 @@ const Footer = () => {
               <span className="relative z-10">Instagram</span>
             </a>
           </div>
-          <div className="text-center text-gray-600 font-comic text-sm">
+          <div className="text-center text-gray-600 font-minecraft text-sm">
 
             <p className="text-xs text-gray-500">
               Built with React and Tailwind CSS | Current Time: {formatTime(currentTime)} | User: AhmedQw1
@@ -97,7 +97,7 @@ const Footer = () => {
           {/* Back to top button very Web 2.0 */}
           <a 
             href="#home" 
-            className="mt-4 bg-gradient-button border-2 border-gray-300 px-4 py-2 rounded-full shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-comic text-sm text-gray-800"
+            className="mt-4 bg-gradient-button border-2 border-gray-300 px-4 py-2 rounded-full shadow-web2 hover:shadow-glossy relative overflow-hidden transition-shadow font-minecraft text-sm text-gray-800"
           >
             <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-transparent h-1/2"></div>
             <span className="relative z-10">Back to Top ↑</span>

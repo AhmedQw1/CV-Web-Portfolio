@@ -80,7 +80,7 @@ const Header = () => {
       >
         Skip to content
       </a>
-      <div className="bg-retro-navy text-white py-1 px-4 text-xs font-retro">
+      <div className="bg-retro-navy text-white py-1 px-4 text-xs font-minecraft">
         <div className="container mx-auto flex justify-between items-center">
           <div>
             Welcome, visitor! Today is {getDateString()}
@@ -95,7 +95,7 @@ const Header = () => {
             href="#home" 
             className="relative inline-block"
           >
-            <div className="bg-gradient-blue text-white font-comic text-xl md:text-2xl py-2 px-4 rounded-lg shadow-web2 relative overflow-hidden">
+            <div className="bg-gradient-blue text-white font-minecraft text-xl md:text-2xl py-2 px-4 rounded-lg shadow-web2 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
               <span className="relative z-10 text-shadow">
                 Ahmed<span className="text-web2-yellow font-bold">Salmen</span>
