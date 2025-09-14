@@ -10,6 +10,7 @@ const Contact = () => {
   });
   
   const [submitMessage, setSubmitMessage] = useState({ type: '', text: '' });
+  const [submitting, setSubmitting] = useState(false);
   const sectionRef = useRef(null);
   
   useEffect(() => {
@@ -38,7 +39,8 @@ const Contact = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitMessage({ type: '', text: '' });
+  setSubmitMessage({ type: '', text: '' });
+  setSubmitting(true);
     
     // Check if Formspree endpoint is configured
     const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
@@ -48,7 +50,8 @@ const Contact = () => {
         type: 'error',
         text: 'Contact form is not properly configured. Please contact me directly via social media.'
       });
-      return;
+  setSubmitting(false);
+  return;
     }
     
     console.log('Using Formspree endpoint:', formspreeEndpoint); // Debug log
@@ -58,7 +61,8 @@ const Contact = () => {
         type: 'error',
         text: 'Please use a different email address to contact me.'
       });
-      return;
+  setSubmitting(false);
+  return;
     }
     
     fetch(formspreeEndpoint, {
@@ -80,12 +84,14 @@ const Contact = () => {
             text: "Thank you for your message! I'll get back to you soon."
           });
           setFormData({ name: '', email: '', message: '' });
+          setSubmitting(false);
         } else {
           const data = await response.json();
           setSubmitMessage({
             type: 'error',
             text: data?.errors?.[0]?.message || 'Something went wrong. Please try again.'
           });
+          setSubmitting(false);
         }
       })
       .catch(() => {
@@ -93,6 +99,7 @@ const Contact = () => {
           type: 'error',
           text: 'Something went wrong. Please try again.'
         });
+        setSubmitting(false);
       });
   };
 
@@ -135,7 +142,8 @@ const Contact = () => {
                     textColor="#ffffff"
                     shadow="#005885"
                     className="w-full py-4 hover:scale-105 transition-transform"
-                    onClick={() => window.open('https://www.linkedin.com/in/ahmed-salmen-26119a370/', '_blank')}
+                    onClick={() => window.open('https://www.linkedin.com/in/ahmed-salmen-26119a370/', '_blank', 'noopener,noreferrer')}
+                    aria-label="Open LinkedIn profile in a new tab"
                   >
                     <span className="font-minecraft flex items-center justify-center text-base">
                       <FaLinkedin className="mr-3 text-xl" />
@@ -148,7 +156,8 @@ const Contact = () => {
                     textColor="#ffffff"
                     shadow="#111111"
                     className="w-full py-4 hover:scale-105 transition-transform"
-                    onClick={() => window.open('https://github.com/AhmedQw1', '_blank')}
+                    onClick={() => window.open('https://github.com/AhmedQw1', '_blank', 'noopener,noreferrer')}
+                    aria-label="Open GitHub profile in a new tab"
                   >
                     <span className="font-minecraft flex items-center justify-center text-base">
                       <FaGithub className="mr-3 text-xl" />
@@ -161,7 +170,8 @@ const Contact = () => {
                     textColor="#ffffff"
                     shadow="#c13584"
                     className="w-full py-4 hover:scale-105 transition-transform"
-                    onClick={() => window.open('https://www.instagram.com/_klqc/', '_blank')}
+                    onClick={() => window.open('https://www.instagram.com/_klqc/', '_blank', 'noopener,noreferrer')}
+                    aria-label="Open Instagram profile in a new tab"
                   >
                     <span className="font-minecraft flex items-center justify-center text-base">
                       <FaInstagram className="mr-3 text-xl" />
@@ -189,7 +199,7 @@ const Contact = () => {
                 
                 <form onSubmit={handleSubmit} className="space-y-8">
                   <div>
-                    <label className="block font-minecraft text-base font-bold mb-3 text-gray-700">
+                    <label htmlFor="contact-name" className="block font-minecraft text-base font-bold mb-3 text-gray-700">
                       Your Name *
                     </label>
                     <Input
@@ -197,16 +207,18 @@ const Contact = () => {
                       textColor="#000000"
                       borderColor="#dee2e6"
                       placeholder="Enter your full name"
+                      id="contact-name"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
                       required
+                      autoComplete="name"
                       className="w-full py-4 text-base"
                     />
                   </div>
                   
                   <div>
-                    <label className="block font-minecraft text-base font-bold mb-3 text-gray-700">
+                    <label htmlFor="contact-email" className="block font-minecraft text-base font-bold mb-3 text-gray-700">
                       Email Address *
                     </label>
                     <Input
@@ -215,16 +227,18 @@ const Contact = () => {
                       borderColor="#dee2e6"
                       placeholder="your.email@example.com"
                       type="email"
+                      id="contact-email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      autoComplete="email"
                       className="w-full py-4 text-base"
                     />
                   </div>
                   
                   <div>
-                    <label className="block font-minecraft text-base font-bold mb-3 text-gray-700">
+                    <label htmlFor="contact-message" className="block font-minecraft text-base font-bold mb-3 text-gray-700">
                       Your Message *
                     </label>
                     <div className="relative">
@@ -233,6 +247,7 @@ const Contact = () => {
                         textColor="#000000"
                         borderColor="#dee2e6"
                         placeholder="Tell me about your project, ask a question, or just say hello! I'd love to hear from you."
+                        id="contact-message"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
@@ -253,9 +268,11 @@ const Contact = () => {
                     textColor="#ffffff"
                     shadow="#0056b3"
                     type="submit"
-                    className="w-full py-5 font-bold hover:scale-105 transition-transform"
+                    className="w-full py-5 font-bold hover:scale-105 transition-transform disabled:opacity-60 disabled:cursor-not-allowed"
+                    disabled={submitting}
+                    aria-busy={submitting ? 'true' : 'false'}
                   >
-                    <span className="font-minecraft text-xl">Send Message</span>
+                    <span className="font-minecraft text-xl">{submitting ? 'Sending…' : 'Send Message'}</span>
                   </Button>
                   
                   <p className="text-sm text-gray-500 font-minecraft text-center">
@@ -264,16 +281,18 @@ const Contact = () => {
                 </form>
                 
                 {/* Status Messages */}
-                {submitMessage.text && (
-                  <Card
-                    bg={submitMessage.type === 'success' ? '#d4edda' : '#f8d7da'}
-                    textColor={submitMessage.type === 'success' ? '#155724' : '#721c24'}
-                    borderColor={submitMessage.type === 'success' ? '#c3e6cb' : '#f5c6cb'}
-                    className="mt-8 p-5"
-                  >
-                    <p className="font-minecraft text-base text-center">{submitMessage.text}</p>
-                  </Card>
-                )}
+                <div aria-live="polite" aria-atomic="true">
+                  {submitMessage.text && (
+                    <Card
+                      bg={submitMessage.type === 'success' ? '#d4edda' : '#f8d7da'}
+                      textColor={submitMessage.type === 'success' ? '#155724' : '#721c24'}
+                      borderColor={submitMessage.type === 'success' ? '#c3e6cb' : '#f5c6cb'}
+                      className="mt-8 p-5"
+                    >
+                      <p className="font-minecraft text-base text-center">{submitMessage.text}</p>
+                    </Card>
+                  )}
+                </div>
               </Card>
             </div>
           </div>

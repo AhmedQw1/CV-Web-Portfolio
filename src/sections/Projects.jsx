@@ -41,7 +41,7 @@ const allProjects = [
   {
     title: "Uni Chat",
     image: null,
-    icon: <IoChatbubbleOutline className="h-24 w-24 object-contain text-blue-500" />,
+    icon: <IoChatbubbleOutline className="h-24 w-24 object-contain text-blue-500" aria-hidden="true" />,
     label: "LIVE",
     category: "Web Development",
     tags: [
@@ -57,7 +57,7 @@ const allProjects = [
   {
     title: "Web Calculator",
     image: null,
-    icon: <FaCalculator className="h-24 w-24 object-contain text-green-500" />,
+    icon: <FaCalculator className="h-24 w-24 object-contain text-green-500" aria-hidden="true" />,
     label: "TOOL",
     category: "Web Development",
     tags: [
@@ -87,15 +87,15 @@ const allProjects = [
   {
     title: "Smart Clinic Management System",
     image: null,
-    icon: <FaHeartbeat className="h-24 w-24 object-contain text-red-500" />,
+    icon: <FaHeartbeat className="h-24 w-24 object-contain text-red-500" aria-hidden="true" />,
     label: "BACKEND",
-    category: "Desktop Development",
+    category: "Web Development",
     tags: [
       { name: "Java", color: "red-100 text-red-800" },
       { name: "Spring Boot", color: "red-100 text-red-800" },
       { name: "MySQL", color: "red-100 text-red-800" },
     ],
-    description: "A full-stack clinic management system with role-based portals for admins, doctors, and patients, built with a Java Spring Boot backend.",
+    description: "A web-based clinic management system with role-based portals (admin, doctor, patient), powered by a Java Spring Boot backend and MySQL.",
     githubUrl: "https://github.com/AhmedQw1/java-database-capstone.git",
     labelColor: "web2-red"
   }
@@ -303,7 +303,29 @@ const Projects = () => {
             )}
 
             {/* Carousel Container: hide horizontal overflow only to allow dropdowns to extend vertically */}
-            <div className="overflow-x-hidden rounded-lg">
+            <div
+              className="overflow-x-hidden rounded-lg"
+              role="region"
+              aria-roledescription="carousel"
+              aria-label="Projects carousel"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (isNavigating) return;
+                if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
+                  e.preventDefault();
+                  setCurrentSlide((s) => Math.min(s + 1, totalSlides - 1));
+                } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                  e.preventDefault();
+                  setCurrentSlide((s) => Math.max(s - 1, 0));
+                } else if (e.key === 'Home') {
+                  e.preventDefault();
+                  setCurrentSlide(0);
+                } else if (e.key === 'End') {
+                  e.preventDefault();
+                  setCurrentSlide(totalSlides - 1);
+                }
+              }}
+            >
               <div 
                 ref={carouselRef}
                 className={`flex transition-all duration-500 ease-in-out ${
@@ -317,6 +339,9 @@ const Projects = () => {
                   <div 
                     key={slideIndex}
                     className="w-full flex-shrink-0"
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label={`Slide ${slideIndex + 1} of ${totalSlides}`}
                   >
                     <div className={`grid gap-8 ${
                       cardsPerSlide === 3 ? 'grid-cols-3' : 
@@ -349,6 +374,7 @@ const Projects = () => {
                                     src={project.image} 
                                     alt={project.title}
                                     className="w-full h-full object-cover rounded"
+                                    loading="lazy"
                                   />
                                 ) : (
                                   project.icon
@@ -387,7 +413,8 @@ const Projects = () => {
                                     textColor="#ffffff"
                                     shadow="#111111"
                                     className="flex-1 py-2 font-minecraft text-xs"
-                                    onClick={() => window.open(project.githubUrl, '_blank')}
+                                    onClick={() => window.open(project.githubUrl, '_blank', 'noopener,noreferrer')}
+                                    aria-label={`Open code for ${project.title} on GitHub`}
                                   >
                                     Code
                                   </Button>
@@ -397,7 +424,8 @@ const Projects = () => {
                                       textColor="#ffffff"
                                       shadow="#2E7D32"
                                       className="flex-1 py-2 font-minecraft text-xs"
-                                      onClick={() => window.open(project.liveUrl, '_blank')}
+                                      onClick={() => window.open(project.liveUrl, '_blank', 'noopener,noreferrer')}
+                                      aria-label={`Open live demo for ${project.title}`}
                                     >
                                       Live
                                     </Button>
@@ -445,7 +473,8 @@ const Projects = () => {
                                         textColor="#ffffff"
                                         shadow="#7B1FA2"
                                         className="flex-1 py-2 font-minecraft text-xs"
-                                        onClick={() => window.open(project.downloadUrl, '_blank')}
+                                        onClick={() => window.open(project.downloadUrl, '_blank', 'noopener,noreferrer')}
+                                        aria-label={`Download ${project.title}`}
                                       >
                                         Download
                                       </Button>
@@ -476,6 +505,7 @@ const Projects = () => {
                         : 'bg-white border-gray-400 hover:border-web2-blue hover:bg-blue-100'
                     } ${isNavigating ? 'cursor-not-allowed' : 'cursor-pointer'}`}
                     aria-label={`Go to slide ${index + 1}`}
+                    aria-current={currentSlide === index ? 'true' : undefined}
                   />
                 ))}
               </div>
