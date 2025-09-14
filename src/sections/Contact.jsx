@@ -255,7 +255,7 @@ const Contact = () => {
                     type="submit"
                     className="w-full py-5 font-bold hover:scale-105 transition-transform"
                   >
-                    <span className="font-minecraft text-xl">Send Message 🚀</span>
+                    <span className="font-minecraft text-xl">Send Message</span>
                   </Button>
                   
                   <p className="text-sm text-gray-500 font-minecraft text-center">

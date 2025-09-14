@@ -302,8 +302,8 @@ const Projects = () => {
               </>
             )}
 
-            {/* Carousel Container */}
-            <div className="overflow-hidden rounded-lg">
+            {/* Carousel Container: hide horizontal overflow only to allow dropdowns to extend vertically */}
+            <div className="overflow-x-hidden rounded-lg">
               <div 
                 ref={carouselRef}
                 className={`flex transition-all duration-500 ease-in-out ${
@@ -403,15 +403,53 @@ const Projects = () => {
                                     </Button>
                                   )}
                                   {project.downloadUrl && (
-                                    <Button
-                                      bg="#9C27B0"
-                                      textColor="#ffffff"
-                                      shadow="#7B1FA2"
-                                      className="flex-1 py-2 font-minecraft text-xs"
-                                      onClick={() => window.open(project.downloadUrl, '_blank')}
-                                    >
-                                      Download
-                                    </Button>
+                                    project.title === 'JavaFX Sound Player' ? (
+                                      <DropdownMenu>
+                                        <DropdownMenuTrigger>
+                                          <Button
+                                            bg="#9C27B0"
+                                            textColor="#ffffff"
+                                            shadow="#7B1FA2"
+                                            className="flex-1 py-2 font-minecraft text-xs"
+                                            aria-label="Download JavaFX Sound Player versions"
+                                          >
+                                            Download ▾
+                                          </Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className="min-w-[180px] p-1 rounded-lg border-2 border-gray-300 bg-white shadow-web2 z-50">
+                                          <DropdownMenuItem>
+                                            <a
+                                              href="https://github.com/AhmedQw1/SoundPlayer/releases/download/v2.0.0/SoundPlayerV2-2.0.exe"
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className="block w-full font-minecraft text-xs"
+                                            >
+                                              Download v2
+                                            </a>
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                            <a
+                                              href={project.downloadUrl}
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className="block w-full font-minecraft text-xs"
+                                            >
+                                              Download v1
+                                            </a>
+                                          </DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                      </DropdownMenu>
+                                    ) : (
+                                      <Button
+                                        bg="#9C27B0"
+                                        textColor="#ffffff"
+                                        shadow="#7B1FA2"
+                                        className="flex-1 py-2 font-minecraft text-xs"
+                                        onClick={() => window.open(project.downloadUrl, '_blank')}
+                                      >
+                                        Download
+                                      </Button>
+                                    )
                                   )}
                                 </div>
                               </div>
