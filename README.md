@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 # CV Web Portfolio
 
 A modern web-based portfolio with authentic retro aesthetic, featuring dynamic visitor counter, project showcase, and secure contact form integration.
