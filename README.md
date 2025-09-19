@@ -1,6 +1,14 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
 # CV Web Portfolio
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![React](https://img.shields.io/badge/React-18-61DAFB.svg?logo=react)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-Build-646CFF.svg?logo=vite)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.x-38B2AC.svg?logo=tailwind-css)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-Animation-FF0050.svg?logo=framer)](https://www.framer.com/motion/)
+[![Supabase](https://img.shields.io/badge/Supabase-DB-3ECF8E.svg?logo=supabase)](https://supabase.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-Hosting-black.svg?logo=vercel)](https://vercel.com/)
+[![Live Demo](https://img.shields.io/badge/Live-Portfolio-brightgreen.svg?logo=google-chrome)](https://www.cv-web.me/)
+
 
 A modern web-based portfolio with authentic retro aesthetic, featuring dynamic visitor counter, project showcase, and secure contact form integration.
 
